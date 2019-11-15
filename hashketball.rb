@@ -196,7 +196,6 @@ def player_stats(players_name)
           if player[:player_name] == players_name
             result = player.delete_if do |k, v|
               k == :player_name
-              binding.pry
             end
          end
        end
@@ -207,8 +206,18 @@ def player_stats(players_name)
 end 
 
 def big_shoe_rebounds
+  biggest_shoe = 0 
+  num_rebounds = 0 
   
-  
+  game_hash.each do |team, data|
+    data[:players].each do |player|
+     if player[:shoe] > biggest_shoe
+       biggest_shoe = player[:shoe]
+       num_rebounds = player[:rebounds]
+     end 
+    end 
+  end 
+  num_rebounds
 end 
 
 
